@@ -41,29 +41,31 @@ const SubHero = ({}) => {
       <motion.div className="absolute inset-0 overflow-hidden  ">
         <motion.div
           style={{ y: photoY }}
-          className="absolute h-full w-full z-10 "
+          className="absolute h-full w-full z-10 undraggable"
         >
           <Image
             src={`/images/hero/hero.jpg`}
             alt="hero-image"
             fill={true}
+            quality={90}
             style={{ objectFit: "cover" }}
             sizes="(max-width: 768px) 80vw, 100vw"
-            className="absolute  object-bottom object-cover w-full h-full"
+            className="absolute  object-bottom object-cover w-full h-full undraggable"
           />
         </motion.div>
 
         <motion.div
           style={{ y: photoY }}
-          className="absolute h-full w-full z-30"
+          className="absolute h-full w-full z-30 undraggable"
         >
           <Image
             src={`/images/hero/car.png`}
             alt="hero-image"
             fill={true}
+            quality={90}
             style={{ objectFit: "cover" }}
             sizes="(max-width: 768px) 80vw, 100vw"
-            className="absolute top-0 left-0  object-bottom object-cover w-full h-full"
+            className="absolute top-0 left-0  object-bottom object-cover w-full h-full undraggable"
           />{" "}
         </motion.div>
       </motion.div>
