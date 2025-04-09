@@ -1,14 +1,15 @@
 "use client";
 
-import { useScroll } from "framer-motion";
-import { useRef } from "react";
+import { AnimatePresence, useScroll, motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
 import Split from "./Components/SplitSection/Split";
 import Hero from "./Components/HeroSection/Hero";
-import SubHero from "./Components/SubHero/SubHero";
+import SubHero from "./Components/Hero/Hero";
 
-import SideMenu from "./Components/menu/SideMenu";
 import Gallery from "./Components/gallery/Gallery";
+import { useRouter } from "next/navigation";
+import { useTransitionStore } from "./lib/transitionStore";
 
 export default function Home() {
   const heroRef = useRef(null);
@@ -17,24 +18,41 @@ export default function Home() {
     offset: ["start end", "end"],
   });
 
-  // const splitExit = useRef(null);
-  // const { scrollYProgress: splitScroll } = useScroll({
-  //   target: splitExit,
-  //   offset: ["start end", "start"],
-  // });
+  const router = useRouter();
+  const destination = useTransitionStore((state) => state.destination);
+  const clearDestination = useTransitionStore(
+    (state) => state.clearDestination
+  );
+  const [shouldExit, setShouldExit] = useState(false);
+
+  useEffect(() => {
+    if (destination) {
+      setShouldExit(true);
+    }
+  }, [destination]);
+
+  const handleExitComplete = () => {
+    if (destination) {
+      router.push(destination);
+      clearDestination();
+    }
+  };
 
   return (
-    <main className="">
-      <SideMenu />
-      <SubHero />
+    <AnimatePresence onExitComplete={handleExitComplete}>
+      {!shouldExit && (
+        <motion.main className="bg-base-100">
+          <SubHero />
 
-      <div className="flex flex-col overflow-clip relative bg-neutral-content">
-        <Hero progress={scrollYProgress} />
-        <div ref={heroRef} className="mt-[0vh] h-[100vh] w-full z-50 " />
-        <Split progress={scrollYProgress} />
-      </div>
+          <motion.div className="flex flex-col overflow-clip relative ">
+            <Hero progress={scrollYProgress} />
+            <div ref={heroRef} className="mt-[0vh] h-[100vh] w-full z-50 " />
+            <Split progress={scrollYProgress} />
+          </motion.div>
 
-      <Gallery />
-    </main>
+          <Gallery />
+        </motion.main>
+      )}
+    </AnimatePresence>
   );
 }

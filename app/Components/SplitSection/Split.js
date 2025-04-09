@@ -9,7 +9,7 @@ const carouselVariants = {
   third: { y: "-66.666%" },
 };
 
-const IMAGES = ["na.jpg", "nb2.jpg", "nc.jpg"];
+const IMAGES = ["main1.jpg", "main2.jpg", "main3.jpg"];
 
 const Split = ({ progress }) => {
   const sectionOne = useRef(null);
@@ -92,11 +92,11 @@ const Split = ({ progress }) => {
           className="flex flex-col  items-center justify-center w-full md:h-screen  bg-base-100"
         >
           <div className="grid w-full px-6 gap-2 sm:gap-4 md:gap-8 place-content-start max-md:py-24 grow sm:px-8 lg:px-20 xl:px-24 2xl:px-28 pt-[10vh] lg:pt-[20vh]">
-            <SectionTitle title={"MX5 NA"} year="1989-1997" />
+            <SectionTitle title={"Lorem Ipsum 1"} year="lorem ipsum" />
             <Subtitle />
             <Button />
           </div>
-          <div className="w-11/12 h-0.5 mx-auto bg-base-content opacity-20"></div>
+          <div className="w-11/12 h-0.5 mx-auto bg-neutral"></div>
         </div>
 
         <div
@@ -104,19 +104,19 @@ const Split = ({ progress }) => {
           className="flex flex-col items-center  justify-center w-full md:h-screen bg-base-100"
         >
           <div className="grid w-full px-6 gap-2 sm:gap-4 md:gap-8 place-content-start max-md:py-24 grow sm:px-8 lg:px-20 xl:px-24 2xl:px-28 pt-[10vh] lg:pt-[20vh]">
-            <SectionTitle title={"MX5 NB"} year="1998-2005" />
+            <SectionTitle title={"Lorem Ipsum"} year="lorem ipsum" />
             <Subtitle />
             <Button />
           </div>
 
-          <div className="w-11/12 h-0.5 mx-auto bg-base-content opacity-20"></div>
+          <div className="w-11/12 h-0.5 mx-auto bg-neutral"></div>
         </div>
         <div
           ref={sectionThree}
           className="flex flex-col  items-center  justify-center w-full md:h-screen  bg-base-100"
         >
           <div className="grid w-full px-6 gap-2 sm:gap-4 md:gap-8 place-content-start max-md:py-24 grow sm:px-8 lg:px-20 xl:px-24 2xl:px-28 pt-[10vh] lg:pt-[20vh]">
-            <SectionTitle title={"MX5 NC"} year="2005-2015" />
+            <SectionTitle title={"Lorem Ipsum"} year="lorem ipsum" />
             <Subtitle />
             <Button />
           </div>
@@ -128,8 +128,6 @@ const Split = ({ progress }) => {
 
 export default Split;
 
-import React from "react";
-
 export const CarouselImage = ({ link }) => {
   return (
     <div className="relative w-full md:h-[110vh] h-80">
@@ -138,6 +136,7 @@ export const CarouselImage = ({ link }) => {
         layout="fill"
         objectFit="cover"
         alt={link}
+        quality={100}
       />
     </div>
   );
@@ -158,7 +157,7 @@ export const SectionTitle = ({ title, year }) => {
           duration: 0.8,
           ease: [0.85, 0.0, 0.495, 1.0],
         }}
-        className=" font-bold uppercase origin-left text-accent-content text-5xl sm:text-6xl lg:text-7xl 2xl:text-8xl"
+        className=" font-bold uppercase origin-left text-base-content text-5xl sm:text-6xl lg:text-7xl 2xl:text-8xl"
       >
         {title}
       </motion.h1>
@@ -179,21 +178,22 @@ export const Subtitle = ({ content }) => {
       <motion.p
         initial={{ opacity: 0, filter: "blur(2px)" }}
         animate={
-          isInView ? { opacity: 0.8, filter: "blur(0px)" } : { opacity: 0 }
+          isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0 }
         }
         transition={{
           delay: 0.5,
           duration: 0.6,
           ease: [0.85, 0.0, 0.495, 1.0],
         }}
-        className="text-lg italic font-medium sm:text-xl lg:text-2xl 2xl:text-3xl opacity-75 w-11/12 max-w-5xl"
+        className="text-lg italic font-medium sm:text-xl text-neutral-content lg:text-2xl 2xl:text-3xl opacity-75 w-11/12 max-w-5xl"
       >
-        The Mazda MX-5 (NA) (sold in Japan as the Eunos Roadster
-        (ユーノス・ロードスター, Yūnosu Rōdosutā) and in North America as the
-        Mazda MX-5 Miata) is the first generation of the Mazda MX-5,
-        manufactured from 1989 to 1997. Inspired by the post-war era British
-        sports cars, the MX-5 rejuvenated interest in roadsters after the demise
-        of cars such as the MG B, Triumph Spitfire, and Fiat 124 Spider.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita,
+        laboriosam ducimus, excepturi dolor non beatae amet minima assumenda
+        tempore doloribus esse quibusdam. Sit eaque exercitationem quaerat illo
+        nesciunt. Aspernatur, saepe? Nisi natus accusamus temporibus facilis
+        delectus optio ad voluptates nostrum deserunt dolores voluptatibus fuga,
+        exercitationem consequatur dolorem, rem quae minus explicabo culpa
+        laborum.
       </motion.p>
     </div>
   );
@@ -210,15 +210,13 @@ export const Button = () => {
     <motion.button
       ref={ref}
       initial={{ opacity: 0, filter: "blur(2px)" }}
-      animate={
-        isInView ? { opacity: 0.8, filter: "blur(0px)" } : { opacity: 0 }
-      }
+      animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0 }}
       transition={{
         delay: 0.6,
         duration: 0.7,
         ease: [0.85, 0.0, 0.495, 1.0],
       }}
-      className=" z-20  px-10 py-5 text-lg font-medium tracking-widest transition-all duration-300 shadow-sm md:text-xl w-fit  bg-accent text-base-100  hover:shadow-none "
+      className=" z-20  px-10 py-5 text-lg rounded-lg font-medium tracking-widest transition-all duration-300 shadow-sm md:text-xl w-fit  bg-accent text-base-content  hover:shadow-none "
     >
       Explore the collection
     </motion.button>

@@ -1,0 +1,53 @@
+.cta span {
+  padding-bottom: 9px;
+  letter-spacing: 2px;
+  padding-inline: 8px;
+}
+
+.animation {
+  position: relative;
+  color: white;
+  padding-bottom: 20px;
+}
+
+.animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.45s cubic-bezier(0.75, 0, 0.2, 1);
+  /* transition-delay: 0.15s; */
+}
+
+.cta:hover {
+  opacity: 100%;
+  transition: all 0.25s ease-out;
+}
+
+.cta:hover .animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+/* 
+.animation:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(1);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.45s cubic-bezier(0.75, 0, 0.2, 1);
+}
+
+.cta:hover .animation:before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+} */

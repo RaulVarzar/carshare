@@ -14,10 +14,10 @@ const Hero = ({ progress }) => {
   const scale = useTransform(progress, [0, 0.15, 1], ["100%", "90%", "80%"]);
 
   return (
-    <section className="relative h-[100vh] bg-[#f8f8f6] border- border-info">
+    <section className="relative h-[100vh]">
       <motion.div
         style={{ x, scale }}
-        className="fixed left-0 w-full  font-bold top-0 grid h-screen text-4xl md:text-6xl xl:text-8xl place-content-center text-neutral"
+        className="fixed left-0 w-full  font-bold top-0 grid h-screen text-4xl md:text-6xl xl:text-8xl place-content-center text-base-content"
       >
         Hero Section
       </motion.div>
