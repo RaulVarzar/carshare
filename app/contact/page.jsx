@@ -1,17 +1,13 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+
 import { IoIosChatboxes } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { BiPhoneCall } from "react-icons/bi";
-import Reveal from "../Components/Reveal";
 
-const Work = () => {
+const Contact = () => {
   return (
     <div className="relative">
-      <Reveal />
       <div className="flex relative justify-center flex-col lg:flex-row py-32 sm:py-36 md:py-60  bg-base-100 min-h-screen ">
-        <Reveal />
         <div className="w-full max-w-3xl md:w-1/2 relative  p-9 bg-base-100 grid place-content-center gap-y-10">
           <ContactOption
             title={"Chat with us"}
@@ -45,7 +41,7 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Contact;
 
 function ContactOption({ children, title, description }) {
   return (

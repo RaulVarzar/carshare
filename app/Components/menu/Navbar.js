@@ -3,30 +3,64 @@
 import "./hamburger.css";
 import { motion } from "framer-motion";
 import Button from "./ActionButton/NavButton";
+import { useTransitionStore } from "../../lib/transitionStore";
 
 const Navbar = () => {
-  const [hidden, setHidden] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const triggerExit = useTransitionStore((state) => state.triggerExit);
+
+  const [show, setShow] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollOffset = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setHidden(scrollY > 100);
+      if (hovering) {
+        // disable hiding if hovering
+        return;
+      }
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+      const threshold = currentScrollY > 300 ? 75 : 25;
+
+      if (delta > 0) {
+        // Scrolling down
+        scrollOffset.current += delta;
+        if (scrollOffset.current > threshold) {
+          setShow(false);
+          scrollOffset.current = 0;
+        }
+      } else if (delta < 0) {
+        // Scrolling up
+        scrollOffset.current += delta;
+        if (Math.abs(scrollOffset.current) > threshold) {
+          setShow(true);
+          scrollOffset.current = 0;
+        }
+      }
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hovering]);
 
   return (
     <motion.nav
       initial={{ y: 0 }}
-      animate={hidden ? { y: "-100%", opacity: 0 } : { y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1] }}
+      onHoverStart={() => setHovering(true)}
+      onHoverEnd={() => setHovering(false)}
+      animate={!show ? { y: "-100%", opacity: 0 } : { y: 0, opacity: 1 }}
+      transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1] }}
       className="fixed top-0 left-0 right-0 flex flex-row z-[999] max-w-screen-2xl 2xl:max-w-[1900px] mx-auto items-center w-full px-16 py-12 min-h-[15vh] xl:min-h-[20vh]"
     >
-      <a href={"/"} className="text-3xl font-medium inline-block w-80">
+      <button
+        onClick={() => triggerExit(`/`)}
+        className="text-3xl font-medium inline-block w-80"
+      >
         HOME
-      </a>
+      </button>
       <Links />
       {/* <LanguageToggle /> */}
     </motion.nav>
@@ -44,7 +78,7 @@ export const Links = () => {
   );
 };
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const LanguageToggle = () => {
   const [language, setLanguage] = useState("en");

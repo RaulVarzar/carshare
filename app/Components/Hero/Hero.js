@@ -74,6 +74,17 @@ export const HeroDescription = ({ opacity }) => {
   return (
     <motion.div
       style={{ opacity }}
+      initial={{ y: "3rem", opacity: 0 }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        transition: { duration: 1.2, delay: 0.85, ease: [0.7, 0, 0.25, 1] },
+      }}
+      exit={{
+        y: "3rem",
+        opacity: 0,
+        transition: { duration: 0.8, delay: 0, ease: [0.7, 0, 0.25, 1] },
+      }}
       className="w-5/12 px-6  md:px-8 2xl:px-10 relative flex flex-col gap-3 md:gap-6 xl:gap-8"
     >
       <span className="text-2xl max-w-xl 2xl:max-w-3xl xl:text-3xl 2xl:text-4xl px-1 text-balance font-normal tracking-wide opacity-80">
