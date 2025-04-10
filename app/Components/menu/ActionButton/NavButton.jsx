@@ -17,14 +17,14 @@ const Button = ({ link, text }) => {
   return (
     <div className="relative">
       <motion.button
-        onClick={() => triggerExit(`${link}`)}
+        onClick={() => !isActive && triggerExit(`${link}`)}
         onHoverStart={() => !isActive && setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         className={
-          "relative flex flex-col overflow-hidden bg-none  font-light  text-4xl    transition-opacity duration-300 " +
+          "relative flex flex-col overflow-hidden bg-none  font-light  text-4xl    transition-all duration-300 " +
           (link == path
-            ? "  opacity-100 cursor-default "
-            : "  opacity-70 cursor-pointer hover:opacity-100 ")
+            ? "  brightness-125 cursor-default "
+            : "  brightness-[.8] cursor-pointer hover:brightness-110 ")
         }
       >
         <motion.span

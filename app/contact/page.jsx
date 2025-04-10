@@ -1,43 +1,47 @@
 "use client";
+import { motion } from "framer-motion";
 
 import { IoIosChatboxes } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { BiPhoneCall } from "react-icons/bi";
+import PageTransitionAnimation from "../components/PageTransitionAnimation";
 
 const Contact = () => {
   return (
-    <div className="relative">
-      <div className="flex relative justify-center flex-col lg:flex-row py-32 sm:py-36 md:py-60  bg-base-100 min-h-screen ">
-        <div className="w-full max-w-3xl md:w-1/2 relative  p-9 bg-base-100 grid place-content-center gap-y-10">
-          <ContactOption
-            title={"Chat with us"}
-            description={
-              "Lorem ipsum dolor sit amet quasi suscipit expedita repellendus excepturi"
-            }
-          >
-            <IoIosChatboxes />
-          </ContactOption>
-          <ContactOption
-            title={"Visit us"}
-            description={
-              "Lorem ipsum dolor sit amet quasi suscipit expedita repellendus excepturi"
-            }
-          >
-            <IoLocationOutline />
-          </ContactOption>
-          <ContactOption
-            title={"Call us"}
-            description={
-              "Lorem ipsum dolor sit amet quasi suscipit expedita repellendus excepturi"
-            }
-          >
-            <BiPhoneCall />
-          </ContactOption>
-        </div>
+    <PageTransitionAnimation>
+      <motion.div className="relative">
+        <div className="flex relative justify-center flex-col lg:flex-row py-32 sm:py-36 md:py-60  bg-base-100 min-h-screen ">
+          <div className="w-full max-w-3xl md:w-1/2 relative  p-9 bg-base-100 grid place-content-center gap-y-10">
+            <ContactOption
+              title={"Chat with us"}
+              description={
+                "Lorem ipsum dolor sit amet quasi suscipit expedita repellendus excepturi"
+              }
+            >
+              <IoIosChatboxes />
+            </ContactOption>
+            <ContactOption
+              title={"Visit us"}
+              description={
+                "Lorem ipsum dolor sit amet quasi suscipit expedita repellendus excepturi"
+              }
+            >
+              <IoLocationOutline />
+            </ContactOption>
+            <ContactOption
+              title={"Call us"}
+              description={
+                "Lorem ipsum dolor sit amet quasi suscipit expedita repellendus excepturi"
+              }
+            >
+              <BiPhoneCall />
+            </ContactOption>
+          </div>
 
-        <ContactForm />
-      </div>
-    </div>
+          <ContactForm />
+        </div>
+      </motion.div>
+    </PageTransitionAnimation>
   );
 };
 

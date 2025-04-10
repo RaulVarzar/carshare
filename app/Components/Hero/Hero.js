@@ -1,7 +1,7 @@
 "use client";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
-
+import Description from "./Description";
 import HeroImage from "./HeroImage";
 
 const SubHero = ({}) => {
@@ -35,7 +35,7 @@ const SubHero = ({}) => {
 
         <motion.div className="relative max-w-[83vw] items-start justify-end flex flex-row gap-2 md:gap-10 xl:gap-16 2xl:gap-24 min-h-[75vh] max-h-[100vh] w-full pt-12 lg:pt-16 2xl:pt-20">
           <HeroImage progress={totalProgress} />
-          <HeroDescription opacity={subTitleOpacity} />
+          <Description opacity={subTitleOpacity} />
         </motion.div>
       </div>
     </motion.section>
@@ -69,43 +69,3 @@ export const Heading = ({ progress }) => {
 };
 
 export default SubHero;
-
-export const HeroDescription = ({ opacity }) => {
-  return (
-    <motion.div
-      style={{ opacity }}
-      initial={{ y: "3rem", opacity: 0 }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        transition: { duration: 1.2, delay: 0.85, ease: [0.7, 0, 0.25, 1] },
-      }}
-      exit={{
-        y: "3rem",
-        opacity: 0,
-        transition: { duration: 0.8, delay: 0, ease: [0.7, 0, 0.25, 1] },
-      }}
-      className="w-5/12 px-6  md:px-8 2xl:px-10 relative flex flex-col gap-3 md:gap-6 xl:gap-8"
-    >
-      <span className="text-2xl max-w-xl 2xl:max-w-3xl xl:text-3xl 2xl:text-4xl px-1 text-balance font-normal tracking-wide opacity-80">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque adipisci
-        delectus sapiente dolore, error possimus mollitia suscipit iste quo non
-        rerum.
-      </span>
-      <div className="md:ml-2 xl:ml-4 3xl:ml-6">
-        <Button />
-      </div>
-    </motion.div>
-  );
-};
-
-export const Button = () => {
-  return (
-    <a
-      href="/quote"
-      class="menu__link w-fit text-2xl md:text-3xl after:bg-base-content before:bg-base-content text-base-content 2xl:text-4xl relative uppercase font-bold tracking-wide"
-    >
-      Get a quote
-    </a>
-  );
-};

@@ -6,45 +6,24 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { useTransitionStore } from "../lib/transitionStore";
+
+import { useRef } from "react";
+import PageTransitionAnimation from "../components/PageTransitionAnimation";
 
 const Work = () => {
-  const router = useRouter();
-  const destination = useTransitionStore((state) => state.destination);
-  const clearDestination = useTransitionStore(
-    (state) => state.clearDestination
-  );
-  const [shouldExit, setShouldExit] = useState(false);
-
-  useEffect(() => {
-    if (destination) {
-      setShouldExit(true);
-    }
-  }, [destination]);
-
-  const handleExitComplete = () => {
-    if (destination) {
-      router.push(destination);
-      clearDestination();
-    }
-  };
   return (
-    <AnimatePresence onExitComplete={handleExitComplete}>
-      {!shouldExit && (
-        <motion.div
-          exit={{
-            y: "2rem",
-            opacity: 0,
-            transition: { duration: 0.8, delay: 0, ease: [0.7, 0, 0.25, 1] },
-          }}
-          className="w-full relative min-h-screen p-9 bg-base-100  "
-        >
-          <Gallery />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <PageTransitionAnimation>
+      <motion.div
+        exit={{
+          y: "2rem",
+          opacity: 0,
+          transition: { duration: 0.8, delay: 0, ease: [0.7, 0, 0.25, 1] },
+        }}
+        className="w-full relative min-h-screen p-9 bg-base-100  "
+      >
+        <Gallery />
+      </motion.div>
+    </PageTransitionAnimation>
   );
 };
 
