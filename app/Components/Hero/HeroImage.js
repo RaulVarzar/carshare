@@ -1,9 +1,4 @@
-import {
-  useMotionTemplate,
-  useTransform,
-  motion,
-  AnimatePresence,
-} from "framer-motion";
+import { useMotionTemplate, useTransform, motion } from "framer-motion";
 
 export const HeroImage = ({ progress }) => {
   const clipPathLeftRight = useTransform(progress, [0, 0.75], [50, 0]);

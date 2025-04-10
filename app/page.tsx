@@ -3,11 +3,11 @@
 import { AnimatePresence, useScroll, motion } from "framer-motion";
 import { useRef } from "react";
 
-import Split from "./Components/SplitSection/Split";
-import Hero from "./Components/HeroSection/Hero";
-import SubHero from "./Components/Hero/Hero";
+import Split from "./components/splitSection/Split";
+import Hero from "./components/heroSection/Hero";
+import SubHero from "./components/Hero/Hero";
 
-import Gallery from "./Components/gallery/Gallery";
+import Gallery from "./components/gallery/Gallery";
 
 import PageTransitionAnimation from "./components/PageTransitionAnimation";
 

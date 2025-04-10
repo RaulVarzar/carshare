@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Jersey_15, Inter, Cairo, Inria_Sans } from "next/font/google";
 import "./globals.css";
 import ScrollContext from "./utils/SmoothScroll";
-import Navbar from "./Components/menu/Navbar";
+import Navbar from "./components/menu/Navbar";
 import { ViewTransitions } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 
